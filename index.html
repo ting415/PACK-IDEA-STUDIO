@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="包點子 PACK IDEA — 不只包住商品，更包住讓人心動的創意。專注於袋裝、瓶罐、盒裝、標籤與品牌包裝整合的設計工作室。" />
+  <meta name="theme-color" content="#f5f5ef" />
+  <title>包點子 PACK IDEA — 真實商品攝影展示版</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--ink:#172723;--muted:#7a8279;--cream:#f5f5ef;--lime:#d3f673;--line:#d9ded5;--white:#fff;--dark:#172723;--w:1440px;--pad:clamp(24px,5vw,84px)}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:86px}
+    body{margin:0;background:var(--cream);color:var(--ink);font-family:'DM Sans','Noto Sans TC',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body.menu-open{overflow:hidden}
+    ::selection{background:var(--lime);color:var(--ink)}
+    a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}
+    button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #7fb52c;outline-offset:4px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .topbar{position:fixed;inset:0 0 auto;z-index:100;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);border-bottom:1px solid rgba(23,39,35,.10);background:rgba(245,245,239,.94);backdrop-filter:blur(18px)}
+    .wordmark{display:inline-flex;align-items:center;gap:12px;font-weight:900;font-size:20px;letter-spacing:-.06em;position:relative;z-index:102}
+    .wordmark small{display:block;font-size:9px;letter-spacing:.19em;font-weight:800;margin-top:-2px;line-height:1;color:#6d766e}
+    .logo-icon{width:36px;height:36px;flex:none}
+    .top-right{display:flex;align-items:center;gap:34px;position:relative;z-index:102}
+    .top-note{font-size:10px;letter-spacing:.18em;font-weight:800;color:#607268;text-transform:uppercase}
+    .menu-toggle{border:1px solid var(--ink);border-radius:100px;padding:11px 17px;display:flex;align-items:center;gap:13px;background:transparent;color:var(--ink);font-size:12px;font-weight:800;transition:background .2s}
+    .menu-toggle:hover{background:var(--lime)}
+    .menu-lines{display:flex;flex-direction:column;justify-content:center;gap:4px;width:19px;height:17px}
+    .menu-lines span{display:block;background:currentColor;width:19px;height:1.5px;transform-origin:center}
+    .menu-toggle.is-open{background:var(--lime)}
+    .menu-overlay{position:fixed;inset:80px 0 0;z-index:90;background:var(--lime);visibility:hidden;opacity:0;pointer-events:none;display:grid;grid-template-columns:1.12fr .88fr;overflow:hidden}
+    .menu-overlay.is-active{pointer-events:auto}
+    .menu-pane{padding:clamp(30px,6vw,92px) var(--pad);display:flex;flex-direction:column;justify-content:space-between}
+    .menu-pane:first-child{border-right:1px solid rgba(23,39,35,.18)}
+    .menu-kicker{font-size:11px;letter-spacing:.18em;font-weight:800}
+    .menu-links{list-style:none;padding:0;margin:26px 0 10px}
+    .menu-links li{overflow:hidden}
+    .menu-links a{display:inline-flex;align-items:baseline;gap:19px;font-size:clamp(32px,5.6vw,84px);font-weight:800;letter-spacing:-.08em;line-height:1.25}
+    .menu-links a:hover{transform:translateX(10px);transition:transform .25s}
+    .menu-links em{font-size:13px;letter-spacing:0;font-weight:600;font-style:normal}
+    .menu-side{background:#dff99f;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .menu-side .big-mark{font-weight:900;font-size:clamp(108px,20vw,330px);letter-spacing:-.12em;transform:rotate(-13deg);line-height:1}
+    .menu-side .small-bottom{position:absolute;bottom:clamp(30px,5vw,70px);left:clamp(30px,5vw,70px);font-size:12px;line-height:1.8;font-weight:700}
+    main{padding-top:80px}
+    .container{max-width:var(--w);margin:0 auto;padding-inline:var(--pad)}
+    .eyebrow{font-size:11px;letter-spacing:.19em;font-weight:800;text-transform:uppercase}
+    .tiny-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:currentColor;margin-right:9px;vertical-align:middle}
+    .hero{min-height:min(850px,calc(100svh - 80px));display:grid;grid-template-columns:1.05fr .95fr;position:relative;border-bottom:1px solid var(--line)}
+    .hero-copy{padding:clamp(76px,8.5vw,144px) 3vw 54px var(--pad);display:flex;flex-direction:column;align-items:flex-start;position:relative}
+    .hero-copy .eyebrow{margin:0 0 clamp(30px,5vw,64px)}
+    .hero-title{font-size:clamp(58px,7.2vw,112px);font-weight:900;letter-spacing:-.095em;line-height:1.14;margin:0;white-space:nowrap}
+    .hero-title .outline-word{color:transparent;-webkit-text-stroke:1.7px var(--ink)}
+    .hero-title .highlight{position:relative;z-index:0;display:inline-block}
+    .hero-title .highlight::after{content:"";position:absolute;z-index:-1;left:0;right:-.03em;bottom:.07em;height:.26em;background:var(--lime);transform:rotate(-1deg)}
+    .hero-description{font-size:clamp(14px,1.15vw,18px);line-height:1.95;color:#637067;max-width:385px;margin:36px 0 36px}
+    .round-link{display:inline-flex;align-items:center;gap:27px;padding:8px 8px 8px 22px;border:1px solid var(--ink);border-radius:100px;font-size:12px;font-weight:800;letter-spacing:.04em;transition:background .25s,color .25s}
+    .round-link:hover{background:var(--ink);color:#fff}
+    .round-link .arrow-disc{width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:var(--lime);color:var(--ink);font-size:23px;font-weight:500;line-height:1}
+    .hero-footnote{margin-top:auto;padding-top:44px;display:flex;align-items:center;gap:12px;color:#88948a;font-size:10px;letter-spacing:.16em;font-weight:800}
+    .hero-footnote .line{width:36px;height:1px;background:#9ba79b}
+    .hero-visual{position:relative;min-height:600px;background:#e6ece5;overflow:hidden;border-left:1px solid var(--line)}
+    .hero-visual::before{content:"";position:absolute;width:80%;height:83%;background:#dbe5d8;border-radius:50%;left:9%;top:10%;filter:blur(2px)}
+    .hero-visual::after{content:"PACKAGING / IDEAS / DESIGN";position:absolute;font-size:10px;letter-spacing:.16em;right:6%;bottom:7%;font-weight:800;writing-mode:vertical-rl;color:#5c6d5e}
+    .hero-grid{position:absolute;inset:0;opacity:.15;background-image:linear-gradient(#8a9c8b 1px,transparent 1px),linear-gradient(90deg,#8a9c8b 1px,transparent 1px);background-size:70px 70px}
+    .hero-shadow{position:absolute;left:14%;right:14%;height:12%;bottom:10%;background:rgba(56,82,60,.19);filter:blur(32px);border-radius:50%}
+    .hero-pack{position:absolute;filter:drop-shadow(0 23px 16px rgba(45,62,43,.17));transform-origin:center bottom}
+    .hero-pack-a{width:43%;height:66%;left:7%;bottom:17%;transform:rotate(-13deg)}
+    .hero-pack-b{width:34%;height:63%;right:10%;bottom:18%;transform:rotate(13deg)}
+    .hero-pack-c{width:41%;height:46%;left:35%;bottom:14%;transform:rotate(1deg)}
+    .hero-pack svg{width:100%;height:100%;overflow:visible}
+    .hero-stamp{position:absolute;width:100px;height:100px;right:6%;top:8%;display:grid;place-items:center;border:1px solid var(--ink);border-radius:50%;transform:rotate(14deg);font-size:11px;font-weight:900;text-align:center;line-height:1.65;letter-spacing:.07em;z-index:1}
+    .ticker{height:66px;overflow:hidden;background:var(--lime);display:flex;align-items:center;border-bottom:1px solid rgba(23,39,35,.08)}
+    .ticker-inner{display:flex;gap:36px;align-items:center;white-space:nowrap;animation:marquee 32s linear infinite;will-change:transform}
+    .ticker span{font-weight:800;font-size:13px;letter-spacing:.04em}
+    .ticker b{font-weight:400;font-size:24px}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    .about{padding-top:clamp(110px,13vw,200px);padding-bottom:clamp(105px,12vw,190px)}
+    .section-label{display:flex;align-items:center;justify-content:space-between;padding-bottom:21px;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.17em;font-weight:800}
+    .about-layout{display:grid;grid-template-columns:33% 1fr;gap:6%;padding-top:63px}
+    .about-side{font-size:15px;line-height:1.9;color:#7b877c;max-width:230px}
+    .about-heading{font-size:clamp(36px,5.2vw,76px);letter-spacing:-.065em;line-height:1.35;font-weight:800;margin:0;max-width:930px}
+    .about-heading em{font-style:normal;color:#a4ada3}
+    .about-heading .circle-highlight{display:inline-block;position:relative}
+    .about-heading .circle-highlight::after{content:"";position:absolute;inset:-4px -13px;border:2px solid #b3d862;border-radius:50%;transform:rotate(-6deg);pointer-events:none}
+    .about-values{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:94px;border-top:1px solid var(--line);padding-top:30px}
+    .value .index{font-size:11px;color:#839187;font-weight:700}
+    .value h3{font-size:22px;letter-spacing:-.04em;margin:26px 0 10px}
+    .value p{font-size:13px;line-height:1.9;color:#7b877e;max-width:275px;margin:0}
+    .work-section{position:relative;height:100svh;min-height:730px;background:#162823;color:#fff;overflow:hidden}
+    .work-shell{height:100%;display:flex;flex-direction:column}
+    .work-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;padding:clamp(45px,5.3vw,82px) var(--pad) 30px}
+    .work-heading .eyebrow{color:#c4dbb8}
+    .work-heading h2{font-size:clamp(41px,5.3vw,77px);letter-spacing:-.075em;line-height:1;margin:22px 0 0}
+    .work-heading p{font-size:13px;color:#c1ccc5;max-width:235px;line-height:1.8;margin:0}
+    .work-view{flex:1;min-height:0;overflow:hidden;display:flex;align-items:stretch}
+    .work-track{display:flex;align-items:stretch;gap:20px;width:max-content;padding:0 var(--pad) clamp(48px,5vw,72px)}
+    .work-card{width:min(54vw,740px);height:100%;min-height:400px;flex:none;display:flex;flex-direction:column;position:relative}
+    .work-art{flex:1;min-height:0;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
+    .work-art svg{width:100%;height:100%;object-fit:cover;display:block}
+    .work-card-meta{display:flex;justify-content:space-between;gap:30px;padding:20px 1px 2px;align-items:center}
+    .work-card-meta h3{font-size:18px;line-height:1.3;margin:0;font-weight:800;letter-spacing:-.02em}
+    .work-card-meta p{font-size:11px;margin:6px 0 0;color:#9ea9a2;letter-spacing:.02em}
+    .work-num{font-size:11px;color:#c6d1c8;letter-spacing:.12em;font-weight:700}
+    .work-navhint{position:absolute;right:var(--pad);top:32px;font-size:11px;color:#c7d3c8;letter-spacing:.04em}
+    .gallery-progress{position:absolute;bottom:21px;left:var(--pad);width:calc(100% - var(--pad) * 2);height:2px;background:rgba(255,255,255,.19)}
+    .gallery-progress-fill{background:var(--lime);height:100%;width:0}
+    .services{padding-top:clamp(110px,12vw,185px);padding-bottom:clamp(90px,10vw,170px)}
+    .services-title{font-size:clamp(47px,7vw,107px);letter-spacing:-.09em;line-height:1.06;margin:60px 0 78px;font-weight:900}
+    .services-title .muted{color:#a9b4a8}
+    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .service{background:var(--cream);padding:clamp(27px,4vw,56px);min-height:280px;display:flex;flex-direction:column;transition:background .35s}
+    .service:hover{background:#ebf0e2}
+    .service-top{display:flex;justify-content:space-between;align-items:center}
+    .service-no{font-size:11px;letter-spacing:.15em;color:#818e83}
+    .service-symbol{font-size:36px;line-height:1;font-weight:400;transition:transform .4s}
+    .service:hover .service-symbol{transform:rotate(45deg)}
+    .service h3{font-size:clamp(26px,2.5vw,40px);margin:auto 0 13px;letter-spacing:-.055em}
+    .service p{font-size:13px;color:#748078;line-height:1.85;margin:0;max-width:335px}
+    .process{background:#e9eee4;padding-top:clamp(90px,10vw,145px);padding-bottom:clamp(105px,10vw,145px)}
+    .process-header{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;padding:57px 0 70px}
+    .process-header h2{font-size:clamp(39px,5.8vw,83px);letter-spacing:-.075em;line-height:1.13;margin:0;font-weight:900}
+    .process-header p{max-width:250px;color:#718077;font-size:14px;line-height:1.9;margin:0}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #cad3c7}
+    .step{padding:27px 21px 0 0;border-right:1px solid #cbd5c9;margin-right:21px;min-height:205px}
+    .step:last-child{border-right:0;margin-right:0}
+    .step .n{font-size:11px;color:#788779;font-weight:800;letter-spacing:.13em}
+    .step h3{font-size:24px;letter-spacing:-.04em;margin:38px 0 10px}
+    .step p{font-size:12px;line-height:1.8;color:#768279;margin:0;max-width:206px}
+    .contact{background:var(--lime);padding-top:clamp(100px,12vw,175px);padding-bottom:clamp(95px,12vw,175px);overflow:hidden;position:relative}
+    .contact::after{content:"✳";position:absolute;right:-3vw;top:1vw;color:rgba(23,39,35,.07);font-size:clamp(200px,32vw,490px);line-height:1;transform:rotate(10deg);pointer-events:none}
+    .contact-content{position:relative;z-index:1}
+    .contact h2{font-size:clamp(62px,10.4vw,160px);letter-spacing:-.11em;line-height:1.05;margin:52px 0 45px;font-weight:900}
+    .contact h2 span{color:transparent;-webkit-text-stroke:1.7px var(--ink)}
+    .contact-bottom{display:flex;justify-content:space-between;gap:40px;align-items:end}
+    .contact-bottom p{font-size:15px;line-height:2;max-width:340px;margin:0;color:#3a513a}
+    .contact-button{border:1px solid var(--ink);background:var(--ink);border-radius:999px;color:#fff;font-weight:800;padding:20px 28px;font-size:13px;display:inline-flex;align-items:center;gap:63px;transition:transform .25s,background .25s}
+    .contact-button:hover{transform:translateY(-4px);background:#345045}
+    .contact-button span{font-size:22px;font-weight:400}
+    .footer{background:#172723;color:#d9e4d8;padding:37px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .footer .foot-brand{font-size:19px;font-weight:900;letter-spacing:-.04em;color:#fff}
+    .footer .foot-brand span{display:block;font-size:9px;letter-spacing:.18em;color:#9fad9d;margin-top:3px}
+    .footer-note{font-size:11px;line-height:1.85;color:#9aa99e;text-align:center}
+    .back-top{font-size:11px;color:#e0f4d7;letter-spacing:.08em;font-weight:700;border-bottom:1px solid #90a68f;padding-bottom:5px}
+    .modal-scrim{position:fixed;inset:0;z-index:120;background:rgba(11,26,20,.64);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+    .modal-scrim.show{opacity:1;visibility:visible}
+    .contact-modal{width:min(100%,540px);max-height:calc(100svh - 40px);overflow-y:auto;background:#f7f8f2;padding:clamp(25px,5vw,43px);box-shadow:0 28px 110px rgba(0,0,0,.16)}
+    .modal-head{display:flex;justify-content:space-between;gap:18px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:22px}
+    .modal-head h3{font-size:30px;letter-spacing:-.05em;margin:0}
+    .close-modal{background:none;border:1px solid var(--ink);border-radius:50%;width:40px;height:40px;font-size:24px;line-height:1;color:var(--ink)}
+    .contact-form{padding-top:25px;display:grid;gap:18px}
+    .contact-form label{display:grid;gap:8px;font-size:12px;font-weight:800;letter-spacing:.04em}
+    .contact-form input,.contact-form textarea{width:100%;border:1px solid #ccd5c8;background:#fff;color:var(--ink);border-radius:0;padding:13px 15px;outline-offset:2px;font-size:14px;font-weight:500}
+    .contact-form textarea{min-height:100px;resize:vertical}
+    .contact-form button{background:var(--ink);border:0;color:#fff;padding:15px 18px;font-weight:800}
+    .form-tip{font-size:12px;line-height:1.75;color:#718071;margin:0}
+    .copy-result{font-size:13px;background:#e4f3d3;padding:12px 15px;line-height:1.8;display:none}
+    .copy-result.show{display:block}
+    @media(max-width:1100px){.hero{grid-template-columns:1.07fr .93fr}.hero-title{font-size:clamp(51px,6.9vw,85px)}.hero-visual{min-height:560px}.work-card{width:64vw}}
+    @media(max-width:850px){.topbar{height:68px}.menu-overlay{inset:68px 0 0;grid-template-columns:1fr}.menu-pane:first-child{border:0}.menu-side{display:none}.top-note{display:none}main{padding-top:68px}.hero{grid-template-columns:1fr;min-height:0}.hero-copy{padding:70px var(--pad) 60px;min-height:550px}.hero-copy .eyebrow{margin-bottom:39px}.hero-title{font-size:clamp(53px,10vw,86px)}.hero-visual{height:560px;min-height:0;border-left:0;border-top:1px solid var(--line)}.about-layout{grid-template-columns:1fr;gap:24px}.about-side{max-width:470px}.about-values{margin-top:70px}.work-section{height:auto;min-height:0}.work-shell{height:auto}.work-heading{padding:65px var(--pad) 28px}.work-view{overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#9cb89b transparent}.work-track{width:max-content;padding:0 var(--pad) 56px}.work-card{width:min(80vw,610px);height:440px;min-height:0;scroll-snap-align:center}.work-navhint,.gallery-progress{display:none}.services-title{margin:50px 0}.process-header{flex-direction:column;align-items:start}.process-header p{max-width:480px}.steps{grid-template-columns:repeat(2,1fr);row-gap:30px}.step:nth-child(2){border-right:0}.contact h2{font-size:clamp(60px,12vw,105px)}}
+    @media(max-width:600px){:root{--pad:23px}.topbar{height:64px}.menu-overlay{inset:64px 0 0}.topbar .wordmark{font-size:17px}.logo-icon{width:30px;height:30px}.top-right{gap:10px}.menu-toggle{padding:10px 13px;font-size:11px}.menu-links a{font-size:clamp(36px,10.3vw,60px)}main{padding-top:64px}.hero-copy{min-height:490px;padding-top:62px;padding-bottom:45px}.hero-title{font-size:clamp(52px,12.4vw,76px)}.hero-description{margin:26px 0 30px;font-size:14px}.hero-visual{height:425px}.hero-stamp{width:72px;height:72px;font-size:8px}.hero-pack-a{left:5%;width:45%}.hero-pack-b{right:7%;width:38%}.hero-pack-c{left:32%;width:46%}.ticker{height:55px}.ticker span{font-size:11px}.about{padding-top:95px;padding-bottom:105px}.about-layout{padding-top:36px}.about-heading{font-size:clamp(32px,8.5vw,45px)}.about-values{grid-template-columns:1fr;gap:35px;margin-top:58px}.value h3{margin:13px 0 6px}.work-heading{padding:64px var(--pad) 25px;display:block}.work-heading h2{font-size:51px}.work-heading p{margin-top:19px;max-width:360px}.work-card{width:85vw;height:360px}.work-track{gap:15px;padding-bottom:35px}.work-card-meta{gap:10px}.work-card-meta h3{font-size:15px}.services{padding-top:102px;padding-bottom:90px}.services-title{font-size:clamp(48px,11vw,69px);margin-bottom:50px}.services-grid{grid-template-columns:1fr}.service{min-height:230px;padding:31px}.service h3{font-size:31px}.process{padding-top:96px;padding-bottom:100px}.process-header{padding:50px 0 45px}.process-header h2{font-size:48px}.steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid #cbd5c9;min-height:0;padding:23px 0 28px;margin:0}.step:last-child{border-bottom:0}.step h3{margin:14px 0 8px}.contact{padding:100px 0}.contact h2{font-size:clamp(58px,14vw,95px);margin:45px 0}.contact-bottom{align-items:start;flex-direction:column;gap:35px}.footer{padding:35px var(--pad);flex-wrap:wrap}.footer-note{order:3;text-align:left;width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-inner{animation:none}.round-link,.service,.service-symbol,.contact-button{transition:none}}
+
+    /* v2 PHOTO EDITION — 以真實產品攝影取代所有展示插畫 */
+    .hero-visual{background:#e9e9e2;isolation:isolate}
+    .hero-visual::before,.hero-visual::after{display:none}
+    .photo-board-label,.photo-board-footer{position:absolute;z-index:4;font-size:10px;letter-spacing:.15em;font-weight:800;color:#526255}
+    .photo-board-label{top:5.4%;left:8%}
+    .photo-board-label span{color:#96a195;margin-left:8px}
+    .photo-board-footer{left:8%;bottom:4.5%;right:8%;display:flex;justify-content:space-between}
+    .hero-photo{position:absolute;margin:0;padding:7px;background:#f7f7f2;box-shadow:0 13px 35px rgba(20,32,26,.10);overflow:hidden;z-index:2}
+    .hero-photo img{width:100%;height:calc(100% - 25px);display:block;object-fit:cover;object-position:center;background:#e1e5db}
+    .hero-photo figcaption{height:25px;display:flex;align-items:center;letter-spacing:.12em;color:#415349;font-size:9px;font-weight:800}
+    .hero-photo-a{left:8%;top:13%;width:54%;height:70%;transform:rotate(-2deg)}
+    .hero-photo-a img{object-position:center 40%}
+    .hero-photo-b{right:7%;top:11%;width:34%;height:40%;transform:rotate(4deg);z-index:3}
+    .hero-photo-c{right:8%;bottom:13%;width:39%;height:36%;transform:rotate(-3deg);z-index:3}
+    .work-art{background:#e7e8e1}
+    .work-art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.7,.25,1)}
+    .work-card:hover .work-art img{transform:scale(1.055)}
+    .work-photo-index,.work-photo-badge{position:absolute;top:18px;left:19px;background:rgba(248,249,244,.91);backdrop-filter:blur(6px);color:#152b21;padding:10px 12px;font-size:10px;letter-spacing:.1em;font-weight:800}
+    .work-photo-badge{top:auto;left:auto;right:16px;bottom:15px;letter-spacing:.04em;font-size:10px;background:rgba(16,36,26,.82);color:#fff}
+    .work-card-meta{padding-bottom:2px}
+    .photo-credit{font-size:9px;letter-spacing:.1em;color:#b7cab8;padding:0 1px 4px;width:max-content;text-decoration:underline;text-underline-offset:3px}
+    .photo-credit:hover{color:var(--lime)}
+    @media(max-width:850px){.hero-photo-a{width:53%;left:8%;height:71%}.hero-photo-b{right:8%;width:33%}.hero-photo-c{width:39%;right:8%}.work-art img{object-position:center}}
+    @media(max-width:600px){.photo-board-label{font-size:8px}.photo-board-footer{font-size:8px}.hero-photo{padding:5px}.hero-photo figcaption{font-size:8px;height:21px}.hero-photo img{height:calc(100% - 21px)}.hero-photo-a{top:15%;height:65%;width:53%}.hero-photo-b{top:16%;width:34%;height:39%}.hero-photo-c{bottom:13%;width:39%;height:33%}.work-photo-index{top:11px;left:10px}.work-photo-badge{right:10px;bottom:11px;font-size:9px}.work-card-meta p{font-size:10px;line-height:1.6}.photo-credit{font-size:9px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a href="#top" class="wordmark" aria-label="包點子，回到首頁">
+      <svg class="logo-icon" viewBox="0 0 44 44" role="img" aria-label="包點子圖標"><rect x="2" y="2" width="40" height="40" rx="11" fill="#d3f673"/><path d="M12 12h20v20H12z M12 12l10 10 10-10 M22 22v10" fill="none" stroke="#172723" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 32l10-10 10 10" fill="none" stroke="#172723" stroke-width="2.2" stroke-linejoin="round"/></svg>
+      <span>包點子<small>PACK IDEA STUDIO</small></span>
+    </a>
+    <div class="top-right">
+      <span class="top-note">Independent Packaging Design Studio</span>
+      <button type="button" class="menu-toggle" id="menuToggle" aria-haspopup="true" aria-expanded="false" aria-controls="mainMenu"><span id="menuLabel">MENU</span><span class="menu-lines" aria-hidden="true"><span></span><span></span></span></button>
+    </div>
+  </header>
+  <nav class="menu-overlay" id="mainMenu" aria-label="網站主選單" aria-hidden="true" inert>
+    <div class="menu-pane">
+      <div class="menu-kicker">EXPLORE THE IDEAS ↘</div>
+      <ul class="menu-links">
+        <li><a href="#top"><em>01</em><span>首頁</span></a></li>
+        <li><a href="#about"><em>02</em><span>關於我們</span></a></li>
+        <li><a href="#works"><em>03</em><span>包裝靈感</span></a></li>
+        <li><a href="#services"><em>04</em><span>設計服務</span></a></li>
+        <li><a href="#process"><em>05</em><span>合作流程</span></a></li>
+        <li><a href="#contact"><em>06</em><span>聯絡我們</span></a></li>
+      </ul>
+      <div class="menu-kicker">包裝不設限，創意多一點。  © PACK IDEA</div>
+    </div>
+    <div class="menu-side" aria-hidden="true"><div class="big-mark">包</div><p class="small-bottom">PACK YOUR STORY.<br />UNPACK NEW IDEAS.</p></div>
+  </nav>
+  <main id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="eyebrow hero-reveal"><span class="tiny-dot"></span>PACKAGING DESIGN / BRANDING</p>
+        <h1 class="hero-title" id="heroTitle"><span class="hero-reveal" style="display:block">有好<span class="highlight">點子</span>，</span><span class="hero-reveal" style="display:block">就要<span class="outline-word">包</span>起來。</span></h1>
+        <p class="hero-description hero-reveal">從一只紙盒，到每一種想像不到的包裝形式。<br />我們用有溫度的設計，讓好商品擁有讓人記住的第一印象。</p>
+        <a href="#works" class="round-link hero-reveal">欣賞包裝靈感 <span class="arrow-disc" aria-hidden="true">↗</span></a>
+        <div class="hero-footnote hero-reveal"><span class="line"></span>SCROLL TO UNPACK THE IDEAS <span aria-hidden="true">↓</span></div>
+      </div>
+      <div class="hero-visual" aria-label="實際商品包裝攝影拼貼，包含瓶罐、軟袋與紙質包裝">
+        <div class="photo-board-label">THE BEAUTY OF EVERY PACKAGE <span>— 2026 EDITION</span></div>
+        <figure class="hero-photo hero-photo-a"><img src="https://images.unsplash.com/photo-1777840347880-747242e0db00?auto=format&fit=crop&w=1200&q=80" alt="真實拍攝的保養品玻璃瓶與罐裝容器" fetchpriority="high" decoding="async"><figcaption>01 — BOTTLES</figcaption></figure>
+        <figure class="hero-photo hero-photo-b"><img src="https://images.unsplash.com/photo-1594222331041-9d986c360730?auto=format&fit=crop&w=900&q=80" alt="真實拍攝的食品袋裝包裝" decoding="async"><figcaption>02 — POUCHES</figcaption></figure>
+        <figure class="hero-photo hero-photo-c"><img src="https://images.unsplash.com/photo-1621535066858-c55a057673f6?auto=format&fit=crop&w=900&q=80" alt="真實拍攝的紙袋和紙盒包裝" decoding="async"><figcaption>03 — PAPER GOODS</figcaption></figure>
+        <div class="photo-board-footer">REAL PACKAGING PHOTOGRAPHY <span>↗</span></div>
+      </div>
+    </section>
+    <div class="ticker" aria-hidden="true"><div class="ticker-inner" id="tickerInner"><span>包裝設計</span><b>✳</b><span>PACK IT DIFFERENT</span><b>↗</b><span>瓶罐・袋裝・盒裝・標籤</span><b>✳</b><span>MAKE IDEAS TANGIBLE</span><b>↗</b><span>包裝設計</span><b>✳</b><span>PACK IT DIFFERENT</span><b>↗</b><span>瓶罐・袋裝・盒裝・標籤</span><b>✳</b><span>MAKE IDEAS TANGIBLE</span><b>↗</b></div></div>
+    <section class="about container" id="about" aria-labelledby="aboutTitle">
+      <div class="section-label"><span>01 / ABOUT THE STUDIO</span><span>MORE THAN A PACKAGE</span></div>
+      <div class="about-layout">
+        <p class="about-side reveal">我們相信包裝是品牌與人們相遇的第一句話。不必太大聲，也能讓人想多看一眼。</p>
+        <h2 class="about-heading reveal" id="aboutTitle">我們不只設計<span class="circle-highlight">包裝</span>。<br />我們把品牌的<span class="muted">想法、個性與故事</span>，變成值得拿在手上的作品。</h2>
+      </div>
+      <div class="about-values">
+        <div class="value reveal"><div class="index">( 01 )</div><h3>創意，不設限。</h3><p>跳脫單一盒裝框架，從形式、材料到細節，找出更有趣的可能。</p></div>
+        <div class="value reveal"><div class="index">( 02 )</div><h3>好看，也好用。</h3><p>視覺與實用同樣重要，讓消費者在打開、拿取與使用時都能感受巧思。</p></div>
+        <div class="value reveal"><div class="index">( 03 )</div><h3>一眼，就記住。</h3><p>讓品牌的獨特個性透過字體、色彩與圖像被看見、被辨識。</p></div>
+      </div>
+    </section>
+    <section class="work-section" id="works" aria-labelledby="worksTitle">
+      <div class="work-shell">
+        <div class="work-heading">
+          <div><div class="eyebrow">02 / PHOTOGRAPHIC INSPIRATION</div><h2 id="worksTitle">讓包裝，自己說話<span style="color:var(--lime)">.</span></h2></div>
+          <p>袋裝、瓶罐、紙盒與標籤。<br />往下捲動，欣賞真實包裝攝影。</p>
+        </div>
+        <div class="work-view" id="workView" tabindex="0" aria-label="真實包裝攝影參考橫向畫廊，手機可左右滑動">
+          <div class="work-track" id="workTrack">
+            <article class="work-card">
+              <div class="work-art"><img src="https://images.unsplash.com/photo-1594222331041-9d986c360730?auto=format&fit=crop&w=1400&q=80" alt="軟袋與食品包裝：真實商品攝影示範" loading="lazy" decoding="async"/><span class="work-photo-index">PHOTO / 01</span><span class="work-photo-badge">攝影參考・非本工作室案例</span></div>
+              <div class="work-card-meta"><div><h3>軟袋與食品包裝</h3><p>軟性包裝 / FOOD POUCH　·　食品補充袋的攝影與視覺比例</p></div><span class="work-num">01 / 06</span></div>
+              <a class="photo-credit" href="https://unsplash.com/photos/white-and-brown-plastic-pack-N-OjvJRKtd4" target="_blank" rel="noopener noreferrer">PHOTO: CTRL - A Meal Replacement / UNSPLASH ↗</a>
+            </article>
+            <article class="work-card">
+              <div class="work-art"><img src="https://images.unsplash.com/photo-1673454818050-c242fabd7dac?auto=format&fit=crop&w=1400&q=80" alt="鋁罐與飲品包裝：真實商品攝影示範" loading="lazy" decoding="async"/><span class="work-photo-index">PHOTO / 02</span><span class="work-photo-badge">攝影參考・非本工作室案例</span></div>
+              <div class="work-card-meta"><div><h3>鋁罐與飲品包裝</h3><p>飲品包裝 / BEVERAGE CAN　·　飲料鋁罐的標籤與品牌識別</p></div><span class="work-num">02 / 06</span></div>
+              <a class="photo-credit" href="https://unsplash.com/photos/a-can-of-soda-sitting-on-top-of-a-wooden-table-oOURsWWU71I" target="_blank" rel="noopener noreferrer">PHOTO: Ambitious Studio / Rick Barrett / UNSPLASH ↗</a>
+            </article>
+            <article class="work-card">
+              <div class="work-art"><img src="https://images.unsplash.com/photo-1777840347880-747242e0db00?auto=format&fit=crop&w=1400&q=80" alt="保養品瓶罐包裝：真實商品攝影示範" loading="lazy" decoding="async"/><span class="work-photo-index">PHOTO / 03</span><span class="work-photo-badge">攝影參考・非本工作室案例</span></div>
+              <div class="work-card-meta"><div><h3>保養品瓶罐包裝</h3><p>瓶罐包裝 / SKINCARE　·　琥珀瓶、紙標籤與材質質感</p></div><span class="work-num">03 / 06</span></div>
+              <a class="photo-credit" href="https://unsplash.com/photos/three-skincare-bottles-and-jar-on-counter-aTyW35_SeOI" target="_blank" rel="noopener noreferrer">PHOTO: Ela De Pure / UNSPLASH ↗</a>
+            </article>
+            <article class="work-card">
+              <div class="work-art"><img src="https://images.unsplash.com/photo-1621535066858-c55a057673f6?auto=format&fit=crop&w=1400&q=80" alt="提袋與禮品紙包裝：真實商品攝影示範" loading="lazy" decoding="async"/><span class="work-photo-index">PHOTO / 04</span><span class="work-photo-badge">攝影參考・非本工作室案例</span></div>
+              <div class="work-card-meta"><div><h3>提袋與禮品紙包裝</h3><p>紙類包裝 / GIFT BAGS　·　紙袋、紙盒與包裝材質的搭配</p></div><span class="work-num">04 / 06</span></div>
+              <a class="photo-credit" href="https://unsplash.com/photos/brown-and-white-cardboard-box-6CfTRMk3MN0" target="_blank" rel="noopener noreferrer">PHOTO: Susan Wilkinson / UNSPLASH ↗</a>
+            </article>
+            <article class="work-card">
+              <div class="work-art"><img src="https://images.unsplash.com/photo-1771519902689-0a5c7be8efe6?auto=format&fit=crop&w=1400&q=80" alt="日常用品瓶身包裝：真實商品攝影示範" loading="lazy" decoding="async"/><span class="work-photo-index">PHOTO / 05</span><span class="work-photo-badge">攝影參考・非本工作室案例</span></div>
+              <div class="work-card-meta"><div><h3>日常用品瓶身包裝</h3><p>日用品包裝 / BODY CARE　·　瓶型、色彩與系列識別的延伸</p></div><span class="work-num">05 / 06</span></div>
+              <a class="photo-credit" href="https://unsplash.com/photos/three-colorful-pump-bottles-with-a-flower-EcatBSsexsw" target="_blank" rel="noopener noreferrer">PHOTO: andrew davies / UNSPLASH ↗</a>
+            </article>
+            <article class="work-card">
+              <div class="work-art"><img src="https://images.unsplash.com/photo-1765963449601-02d96e3dcfcb?auto=format&fit=crop&w=1400&q=80" alt="禮盒與品牌系列包裝：真實商品攝影示範" loading="lazy" decoding="async"/><span class="work-photo-index">PHOTO / 06</span><span class="work-photo-badge">攝影參考・非本工作室案例</span></div>
+              <div class="work-card-meta"><div><h3>禮盒與品牌系列包裝</h3><p>組合包裝 / GIFT SET　·　盒裝和瓶身搭配的完整視覺體驗</p></div><span class="work-num">06 / 06</span></div>
+              <a class="photo-credit" href="https://unsplash.com/photos/skincare-gift-set-with-cleanser-and-serum-pDBxHgbTGzM" target="_blank" rel="noopener noreferrer">PHOTO: Ela De Pure / UNSPLASH ↗</a>
+            </article>
+          </div>
+        </div>
+        <div class="gallery-progress" aria-hidden="true"><div class="gallery-progress-fill" id="galleryProgress"></div></div>
+      </div>
+    </section>
+    <section class="services container" id="services" aria-labelledby="servicesTitle">
+      <div class="section-label"><span>03 / WHAT WE DO</span><span>IDEAS COME IN ALL SHAPES</span></div>
+      <h2 class="services-title reveal" id="servicesTitle">任何形式，<br /><span class="muted">都有好點子。</span></h2>
+      <div class="services-grid">
+        <article class="service reveal"><div class="service-top"><span class="service-no">SERVICE — 01</span><span class="service-symbol">↗</span></div><h3>袋裝與軟性包裝</h3><p>食品袋、補充包、夾鏈袋、軟袋包材，兼顧商品特色與視覺辨識。</p></article>
+        <article class="service reveal"><div class="service-top"><span class="service-no">SERVICE — 02</span><span class="service-symbol">↗</span></div><h3>瓶身與罐裝設計</h3><p>飲品鋁罐、玻璃罐、保養品瓶身、飲料標籤，讓產品拿在手上就有態度。</p></article>
+        <article class="service reveal"><div class="service-top"><span class="service-no">SERVICE — 03</span><span class="service-symbol">↗</span></div><h3>盒裝與禮品包裝</h3><p>商品紙盒、禮盒、特殊開盒結構與系列設計，讓拆封也成為一種體驗。</p></article>
+        <article class="service reveal"><div class="service-top"><span class="service-no">SERVICE — 04</span><span class="service-symbol">↗</span></div><h3>品牌視覺與標籤</h3><p>從標準字、插畫到包裝系列延伸，打造完整一致、容易辨認的品牌形象。</p></article>
+      </div>
+    </section>
+    <section class="process" id="process" aria-labelledby="processTitle"><div class="container">
+      <div class="section-label"><span>04 / OUR PROCESS</span><span>FROM A THOUGHT TO A THING</span></div>
+      <div class="process-header"><h2 class="reveal" id="processTitle">從一個想法，<br />包成一個作品。</h2><p class="reveal">好的包裝從理解開始。我們一起從品牌出發，把每個細節變成有意義的設計。</p></div>
+      <div class="steps"><div class="step reveal"><span class="n">STEP 01</span><h3>聊聊想法</h3><p>了解品牌故事、商品特性與期待的目標。</p></div><div class="step reveal"><span class="n">STEP 02</span><h3>發想提案</h3><p>整理設計方向，建立風格與包裝概念。</p></div><div class="step reveal"><span class="n">STEP 03</span><h3>細節打磨</h3><p>調整圖像、色彩、文字與實際包裝應用。</p></div><div class="step reveal"><span class="n">STEP 04</span><h3>成果交付</h3><p>依合作項目提供確認後的設計完稿檔案。</p></div></div>
+    </div></section>
+    <section class="contact" id="contact" aria-labelledby="contactTitle"><div class="container contact-content">
+      <div class="section-label" style="border-bottom-color:rgba(23,39,35,.25)"><span>05 / LET'S COLLABORATE</span><span>HAVE AN IDEA?</span></div>
+      <h2 id="contactTitle" class="reveal">你的好點子，<br /><span>我們來包。</span></h2>
+      <div class="contact-bottom"><p class="reveal">準備替品牌換上新包裝？<br />不管是小小標籤，還是一整套產品系列，<br />都歡迎和我們聊聊你的想法。</p><button type="button" class="contact-button reveal" id="contactOpen">聊聊合作想法 <span aria-hidden="true">↗</span></button></div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="foot-brand">包點子<span>PACK IDEA STUDIO</span></div><div class="footer-note">© 2026 PACK IDEA STUDIO · 包裝不設限，創意多一點。<br />網站圖片為 Unsplash 真實商品攝影示例，並非包點子客戶案例或本工作室設計成果。</div><a href="#top" class="back-top">BACK TO TOP ↑</a></footer>
+  <div class="modal-scrim" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true"><div class="contact-modal"><div class="modal-head"><h3 id="modalTitle">聊聊你的好點子 ✳</h3><button type="button" id="contactClose" class="close-modal" aria-label="關閉合作表單">×</button></div><form class="contact-form" id="contactForm"><label>怎麼稱呼你？ <input name="name" placeholder="例如：小包 / XX 品牌" required maxlength="50" /></label><label>想做什麼包裝？ <input name="type" placeholder="例如：飲料瓶身、食品袋、禮盒…" required maxlength="100" /></label><label>跟我們分享你的想法 <textarea name="message" placeholder="品牌名稱、產品特色、希望的設計風格…" required maxlength="1500"></textarea></label><button type="submit">產生並複製合作需求 ↗</button><p class="form-tip">此為網站展示版，尚未串接收件信箱。按下按鈕會產生合作需求摘要並嘗試複製，方便您之後傳送給設計工作室。</p><p class="copy-result" id="copyResult" role="status" aria-live="polite"></p></form></div></div>
+  <!-- GSAP 與真實包裝照片皆由網路載入；攝影作品來源請見畫廊標示與授權說明。 -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script>
+  (() => {
+    'use strict';
+    const toggle = document.querySelector('#menuToggle');
+    const menu = document.querySelector('#mainMenu');
+    const menuLabel = document.querySelector('#menuLabel');
+    const lines = [...document.querySelectorAll('.menu-lines span')];
+    const links = [...document.querySelectorAll('.menu-links a')];
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasGSAP = typeof window.gsap !== 'undefined';
+    const hasST = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
+    let opened = false, menuTimeline = null, returnFocus = null;
+
+    function reflectMenu(open) {
+      opened = open;
+      toggle.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      menuLabel.textContent = open ? 'CLOSE' : 'MENU';
+      menu.classList.toggle('is-active', open);
+      menu.removeAttribute('inert');
+      if (!open) menu.setAttribute('inert', '');
+      menu.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('menu-open', open);
+    }
+    function setMenu(open, focusAfter = false) {
+      if (open === opened) return;
+      reflectMenu(open);
+      if (hasGSAP && !reduce && menuTimeline) {
+        if (open) { menuTimeline.timeScale(1).play(); setTimeout(() => links[0].focus({preventScroll:true}), 100); }
+        else { menuTimeline.timeScale(1.35).reverse(); if (focusAfter) toggle.focus({preventScroll:true}); }
+      } else {
+        menu.style.visibility = open ? 'visible' : 'hidden';
+        menu.style.opacity = open ? '1' : '0';
+        if (open) links[0].focus({preventScroll:true});
+        else if (focusAfter) toggle.focus({preventScroll:true});
+      }
+    }
+    if (hasGSAP && !reduce) {
+      const g = window.gsap;
+      // 指定動畫 ① Orchestrated easeReverse：每一層採用各自的反向 easing，
+      // 選單於開啟、關閉，以及動畫進行中反轉時呈現協調的過渡。
+      menuTimeline = g.timeline({paused:true});
+      menuTimeline
+        .fromTo(menu, {autoAlpha:0},{autoAlpha:1,duration:.42,ease:'power3.out',easeReverse:'power3.in'},0)
+        .fromTo('.menu-pane', {y:-55,autoAlpha:0},{y:0,autoAlpha:1,duration:.67,ease:'expo.out',easeReverse:'power3.in'},.05)
+        .fromTo('.menu-links li', {y:44,autoAlpha:0},{y:0,autoAlpha:1,duration:.72,stagger:.075,ease:'power3.out',easeReverse:'expo.in'},.13)
+        .fromTo('.menu-side .big-mark', {rotation:-36,scale:.62,autoAlpha:0},{rotation:-13,scale:1,autoAlpha:1,duration:.85,ease:'back.out(1.4)',easeReverse:'power3.in'},.12)
+        .fromTo('.menu-side .small-bottom', {y:20,autoAlpha:0},{y:0,autoAlpha:1,duration:.55,ease:'power2.out',easeReverse:'power2.in'},.48);
+      // 使用 GSAP animate 圖示的獨立反向 easing。
+      const iconTl = g.timeline({paused:true});
+      iconTl.to(lines[0],{y:2.75,rotation:45,duration:.3,ease:'power2.out',easeReverse:'power2.in'},0)
+            .to(lines[1],{y:-2.75,rotation:-45,duration:.3,ease:'power2.out',easeReverse:'power2.in'},0);
+      menuTimeline.eventCallback('onReverseComplete',()=>{menu.style.pointerEvents='none'});
+      toggle.addEventListener('click',()=>{ const next=!opened; setMenu(next,true); next ? iconTl.play() : iconTl.reverse(); });
+      document.addEventListener('keydown',e=>{if(e.key==='Escape' && opened){setMenu(false,true);iconTl.reverse()} if(e.key==='Tab'&&opened){const nodes=[...menu.querySelectorAll('a')].filter(el=>el.offsetParent!==null);nodes.unshift(toggle);const i=nodes.indexOf(document.activeElement);if(e.shiftKey&&i===0){e.preventDefault();nodes[nodes.length-1].focus()}else if(!e.shiftKey&&i===nodes.length-1){e.preventDefault();nodes[0].focus()}}});
+      links.forEach(link=>link.addEventListener('click',()=>{if(opened){setMenu(false);iconTl.reverse()}}));
+    } else {
+      toggle.addEventListener('click',()=>setMenu(!opened,true));
+      document.addEventListener('keydown',e=>{if(e.key==='Escape'&&opened)setMenu(false,true)});
+      links.forEach(link=>link.addEventListener('click',()=>setMenu(false)));
+    }
+
+    if (hasGSAP && !reduce) {
+      const g = window.gsap;
+      g.from('.hero-reveal',{y:42,autoAlpha:0,duration:.92,stagger:.12,ease:'power3.out',delay:.12});
+      g.from('.hero-photo',{y:55,autoAlpha:0,duration:1.15,stagger:.13,ease:'power3.out',delay:.25});
+    }
+    if (hasST && !reduce) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      window.gsap.utils.toArray('.reveal').forEach(el=>{
+        window.gsap.from(el,{y:38,autoAlpha:0,duration:.9,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 91%',once:true}});
+      });
+      // 指定動畫 ② Horizontal scrolling gallery：桌機往下捲動時，釘選作品區並橫向移動。
+      // 手機不釘選，恢復原生左右滑動，避免妨礙觸控瀏覽。
+      const track=document.querySelector('#workTrack');
+      const view=document.querySelector('#workView');
+      const progress=document.querySelector('#galleryProgress');
+      const media=window.gsap.matchMedia();
+      media.add('(min-width: 851px)',()=>{
+        const distance=()=>Math.max(0,track.scrollWidth-view.clientWidth);
+        const tween=window.gsap.to(track,{
+          x:()=>-distance(),ease:'none',
+          scrollTrigger:{trigger:'#works',start:'top top',end:()=>'+='+Math.max(200,distance()),pin:true,scrub:1,anticipatePin:1,invalidateOnRefresh:true,
+            onUpdate:self=>{progress.style.width=(self.progress*100).toFixed(2)+'%';}}
+        });
+        return ()=>{tween.scrollTrigger&&tween.scrollTrigger.kill();tween.kill();window.gsap.set(track,{clearProps:'transform'});progress.style.width='0%';};
+      });
+      window.addEventListener('load',()=>window.ScrollTrigger.refresh(),{once:true});
+    }
+
+    // 若 GSAP 無法載入，或使用者偏好減少動態效果，桌機改為可鍵盤/滑鼠操作的原生橫向畫廊。
+    if (!hasST || reduce) {
+      const nativeGallery = document.querySelector('#workView');
+      nativeGallery.style.overflowX = 'auto';
+      nativeGallery.style.scrollSnapType = 'x mandatory';
+      nativeGallery.querySelectorAll('.work-card').forEach(card => { card.style.scrollSnapAlign = 'start'; });
+      nativeGallery.addEventListener('wheel', event => {
+        if (window.innerWidth > 850 && Math.abs(event.deltaY) > Math.abs(event.deltaX) && !event.ctrlKey) {
+          nativeGallery.scrollLeft += event.deltaY;
+          event.preventDefault();
+        }
+      }, { passive:false });
+    }
+
+    // 合作表單採本機產生文案，不假裝已寄出，避免虛構收件地址。
+    const modal=document.querySelector('#contactModal');
+    const openContact=document.querySelector('#contactOpen');
+    const closeContact=document.querySelector('#contactClose');
+    const form=document.querySelector('#contactForm');
+    const result=document.querySelector('#copyResult');
+    function showContact(show){
+      modal.classList.toggle('show',show);modal.setAttribute('aria-hidden',String(!show));
+      document.body.classList.toggle('menu-open',show);
+      if(show){returnFocus=document.activeElement;modal.querySelector('input').focus()}
+      else{if(returnFocus) returnFocus.focus()}
+    }
+    openContact.addEventListener('click',()=>showContact(true));
+    closeContact.addEventListener('click',()=>showContact(false));
+    modal.addEventListener('click',e=>{if(e.target===modal)showContact(false)});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('show'))showContact(false)});
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const data=new FormData(form);
+      const content=`【包點子設計工作室｜合作需求】\n稱呼：${data.get('name')}\n包裝類型：${data.get('type')}\n合作想法：\n${data.get('message')}`;
+      let copied=false;
+      try {await navigator.clipboard.writeText(content);copied=true;} catch(err) {}
+      if(!copied){const area=document.createElement('textarea');area.value=content;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();try{copied=document.execCommand('copy')}catch(err){}area.remove();}
+      result.textContent=copied?'已複製合作需求摘要！請貼到電子郵件或通訊軟體，傳給工作室。':'需求摘要已產生，請手動複製以下內容：\n'+content;
+      result.style.whiteSpace='pre-wrap';result.classList.add('show');
+    });
+  })();
+  </script>
+</body>
+</html>
